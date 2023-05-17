@@ -15,13 +15,15 @@ use App\Http\Controllers\Api\V1\BookController as BookV1;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::apiResource('v1/books', BookV1::class)
-      ->only(['index','show', 'destroy'])
-      ->middleware('auth:sanctum');
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
       
-Route::post('login', [App\Http\Controllers\Api\LoginController::class, 'login']);
+Route::get('/books', 'App\Http\Controllers\Api\V1\BookController@index');
+Route::post('/books', 'App\Http\Controllers\Api\V1\BookController@create');
+Route::get('/books/{book}', 'App\Http\Controllers\Api\V1\BookController@show');
+Route::put('/books/{book}', 'App\Http\Controllers\Api\V1\BookController@update');
+Route::delete('/books/{book}', 'App\Http\Controllers\Api\V1\BookController@destroy');
+
+// Route::post('login', [App\Http\Controllers\Api\LoginController::class, 'login']);
